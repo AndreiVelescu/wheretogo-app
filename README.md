@@ -25,8 +25,10 @@ Built as a bachelor's thesis project, focused on Moldova (Chișinău).
 |                        Feed                        |                        Explore                        |                     Trip Itinerary                      |
 | :------------------------------------------------: | :---------------------------------------------------: | :-----------------------------------------------------: |
 | <img src="docs/screenshots/feed.png" width="240"/> | <img src="docs/screenshots/explore.png" width="240"/> | <img src="docs/screenshots/itinerary.png" width="240"/> |
-|                        Chat                        |                        Profile                        |                                                         |
-|                                                    |  <img src="docs/screenshots/chat.png" width="240"/>   |  <img src="docs/screenshots/profile.png" width="240"/>  |
+
+|                        Chat                        |                        Profile                        |
+| :------------------------------------------------: | :---------------------------------------------------: |
+| <img src="docs/screenshots/chat.png" width="240"/> | <img src="docs/screenshots/profile.png" width="240"/> |
 
 </div>
 
