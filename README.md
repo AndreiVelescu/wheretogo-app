@@ -4,7 +4,7 @@
 
 **A full-stack travel & social app that helps you discover places, plan trips automatically, and share the journey.**
 
-Built as a bachelor's thesis (_licență_) project, focused on Moldova (Chișinău).
+Built as a bachelor's thesis project, focused on Moldova (Chișinău).
 
 [![NestJS](https://img.shields.io/badge/NestJS-11-E0234E?logo=nestjs&logoColor=white)](https://nestjs.com/)
 [![GraphQL](https://img.shields.io/badge/GraphQL-Apollo-E10098?logo=graphql&logoColor=white)](https://graphql.org/)
@@ -26,9 +26,9 @@ Built as a bachelor's thesis (_licență_) project, focused on Moldova (Chișin�
 | :------------------------------------------------: | :---------------------------------------------------: | :-----------------------------------------------------: |
 | <img src="docs/screenshots/feed.png" width="240"/> | <img src="docs/screenshots/explore.png" width="240"/> | <img src="docs/screenshots/itinerary.png" width="240"/> |
 
-|                        Destination                        |                        Chat                        |                        Profile                        |
-| :-------------------------------------------------------: | :------------------------------------------------: | :---------------------------------------------------: |
-| <img src="docs/screenshots/destination.png" width="240"/> | <img src="docs/screenshots/chat.png" width="240"/> | <img src="docs/screenshots/profile.png" width="240"/> |
+| Destination |                        Chat                        |                        Profile                        |
+| :---------: | :------------------------------------------------: | :---------------------------------------------------: |
+|             | <img src="docs/screenshots/chat.png" width="240"/> | <img src="docs/screenshots/profile.png" width="240"/> |
 
 </div>
 
