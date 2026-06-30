@@ -1,0 +1,15 @@
+export { AggregateTripCollaboratorArgs } from "./AggregateTripCollaboratorArgs";
+export { CreateManyAndReturnTripCollaboratorArgs } from "./CreateManyAndReturnTripCollaboratorArgs";
+export { CreateManyTripCollaboratorArgs } from "./CreateManyTripCollaboratorArgs";
+export { CreateOneTripCollaboratorArgs } from "./CreateOneTripCollaboratorArgs";
+export { DeleteManyTripCollaboratorArgs } from "./DeleteManyTripCollaboratorArgs";
+export { DeleteOneTripCollaboratorArgs } from "./DeleteOneTripCollaboratorArgs";
+export { FindFirstTripCollaboratorArgs } from "./FindFirstTripCollaboratorArgs";
+export { FindFirstTripCollaboratorOrThrowArgs } from "./FindFirstTripCollaboratorOrThrowArgs";
+export { FindManyTripCollaboratorArgs } from "./FindManyTripCollaboratorArgs";
+export { FindUniqueTripCollaboratorArgs } from "./FindUniqueTripCollaboratorArgs";
+export { FindUniqueTripCollaboratorOrThrowArgs } from "./FindUniqueTripCollaboratorOrThrowArgs";
+export { GroupByTripCollaboratorArgs } from "./GroupByTripCollaboratorArgs";
+export { UpdateManyTripCollaboratorArgs } from "./UpdateManyTripCollaboratorArgs";
+export { UpdateOneTripCollaboratorArgs } from "./UpdateOneTripCollaboratorArgs";
+export { UpsertOneTripCollaboratorArgs } from "./UpsertOneTripCollaboratorArgs";

@@ -1,0 +1,15 @@
+export { AggregatePostCollectionItemArgs } from "./AggregatePostCollectionItemArgs";
+export { CreateManyAndReturnPostCollectionItemArgs } from "./CreateManyAndReturnPostCollectionItemArgs";
+export { CreateManyPostCollectionItemArgs } from "./CreateManyPostCollectionItemArgs";
+export { CreateOnePostCollectionItemArgs } from "./CreateOnePostCollectionItemArgs";
+export { DeleteManyPostCollectionItemArgs } from "./DeleteManyPostCollectionItemArgs";
+export { DeleteOnePostCollectionItemArgs } from "./DeleteOnePostCollectionItemArgs";
+export { FindFirstPostCollectionItemArgs } from "./FindFirstPostCollectionItemArgs";
+export { FindFirstPostCollectionItemOrThrowArgs } from "./FindFirstPostCollectionItemOrThrowArgs";
+export { FindManyPostCollectionItemArgs } from "./FindManyPostCollectionItemArgs";
+export { FindUniquePostCollectionItemArgs } from "./FindUniquePostCollectionItemArgs";
+export { FindUniquePostCollectionItemOrThrowArgs } from "./FindUniquePostCollectionItemOrThrowArgs";
+export { GroupByPostCollectionItemArgs } from "./GroupByPostCollectionItemArgs";
+export { UpdateManyPostCollectionItemArgs } from "./UpdateManyPostCollectionItemArgs";
+export { UpdateOnePostCollectionItemArgs } from "./UpdateOnePostCollectionItemArgs";
+export { UpsertOnePostCollectionItemArgs } from "./UpsertOnePostCollectionItemArgs";

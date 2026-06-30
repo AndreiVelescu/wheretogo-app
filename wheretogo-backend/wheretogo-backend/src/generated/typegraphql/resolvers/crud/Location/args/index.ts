@@ -1,0 +1,15 @@
+export { AggregateLocationArgs } from "./AggregateLocationArgs";
+export { CreateManyAndReturnLocationArgs } from "./CreateManyAndReturnLocationArgs";
+export { CreateManyLocationArgs } from "./CreateManyLocationArgs";
+export { CreateOneLocationArgs } from "./CreateOneLocationArgs";
+export { DeleteManyLocationArgs } from "./DeleteManyLocationArgs";
+export { DeleteOneLocationArgs } from "./DeleteOneLocationArgs";
+export { FindFirstLocationArgs } from "./FindFirstLocationArgs";
+export { FindFirstLocationOrThrowArgs } from "./FindFirstLocationOrThrowArgs";
+export { FindManyLocationArgs } from "./FindManyLocationArgs";
+export { FindUniqueLocationArgs } from "./FindUniqueLocationArgs";
+export { FindUniqueLocationOrThrowArgs } from "./FindUniqueLocationOrThrowArgs";
+export { GroupByLocationArgs } from "./GroupByLocationArgs";
+export { UpdateManyLocationArgs } from "./UpdateManyLocationArgs";
+export { UpdateOneLocationArgs } from "./UpdateOneLocationArgs";
+export { UpsertOneLocationArgs } from "./UpsertOneLocationArgs";

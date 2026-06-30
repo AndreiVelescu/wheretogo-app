@@ -1,0 +1,15 @@
+export { AggregateTripDayArgs } from "./AggregateTripDayArgs";
+export { CreateManyAndReturnTripDayArgs } from "./CreateManyAndReturnTripDayArgs";
+export { CreateManyTripDayArgs } from "./CreateManyTripDayArgs";
+export { CreateOneTripDayArgs } from "./CreateOneTripDayArgs";
+export { DeleteManyTripDayArgs } from "./DeleteManyTripDayArgs";
+export { DeleteOneTripDayArgs } from "./DeleteOneTripDayArgs";
+export { FindFirstTripDayArgs } from "./FindFirstTripDayArgs";
+export { FindFirstTripDayOrThrowArgs } from "./FindFirstTripDayOrThrowArgs";
+export { FindManyTripDayArgs } from "./FindManyTripDayArgs";
+export { FindUniqueTripDayArgs } from "./FindUniqueTripDayArgs";
+export { FindUniqueTripDayOrThrowArgs } from "./FindUniqueTripDayOrThrowArgs";
+export { GroupByTripDayArgs } from "./GroupByTripDayArgs";
+export { UpdateManyTripDayArgs } from "./UpdateManyTripDayArgs";
+export { UpdateOneTripDayArgs } from "./UpdateOneTripDayArgs";
+export { UpsertOneTripDayArgs } from "./UpsertOneTripDayArgs";

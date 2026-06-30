@@ -1,0 +1,15 @@
+export { AggregatePostMediaArgs } from "./AggregatePostMediaArgs";
+export { CreateManyAndReturnPostMediaArgs } from "./CreateManyAndReturnPostMediaArgs";
+export { CreateManyPostMediaArgs } from "./CreateManyPostMediaArgs";
+export { CreateOnePostMediaArgs } from "./CreateOnePostMediaArgs";
+export { DeleteManyPostMediaArgs } from "./DeleteManyPostMediaArgs";
+export { DeleteOnePostMediaArgs } from "./DeleteOnePostMediaArgs";
+export { FindFirstPostMediaArgs } from "./FindFirstPostMediaArgs";
+export { FindFirstPostMediaOrThrowArgs } from "./FindFirstPostMediaOrThrowArgs";
+export { FindManyPostMediaArgs } from "./FindManyPostMediaArgs";
+export { FindUniquePostMediaArgs } from "./FindUniquePostMediaArgs";
+export { FindUniquePostMediaOrThrowArgs } from "./FindUniquePostMediaOrThrowArgs";
+export { GroupByPostMediaArgs } from "./GroupByPostMediaArgs";
+export { UpdateManyPostMediaArgs } from "./UpdateManyPostMediaArgs";
+export { UpdateOnePostMediaArgs } from "./UpdateOnePostMediaArgs";
+export { UpsertOnePostMediaArgs } from "./UpsertOnePostMediaArgs";

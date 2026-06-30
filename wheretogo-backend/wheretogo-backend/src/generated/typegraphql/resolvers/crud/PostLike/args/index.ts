@@ -1,0 +1,15 @@
+export { AggregatePostLikeArgs } from "./AggregatePostLikeArgs";
+export { CreateManyAndReturnPostLikeArgs } from "./CreateManyAndReturnPostLikeArgs";
+export { CreateManyPostLikeArgs } from "./CreateManyPostLikeArgs";
+export { CreateOnePostLikeArgs } from "./CreateOnePostLikeArgs";
+export { DeleteManyPostLikeArgs } from "./DeleteManyPostLikeArgs";
+export { DeleteOnePostLikeArgs } from "./DeleteOnePostLikeArgs";
+export { FindFirstPostLikeArgs } from "./FindFirstPostLikeArgs";
+export { FindFirstPostLikeOrThrowArgs } from "./FindFirstPostLikeOrThrowArgs";
+export { FindManyPostLikeArgs } from "./FindManyPostLikeArgs";
+export { FindUniquePostLikeArgs } from "./FindUniquePostLikeArgs";
+export { FindUniquePostLikeOrThrowArgs } from "./FindUniquePostLikeOrThrowArgs";
+export { GroupByPostLikeArgs } from "./GroupByPostLikeArgs";
+export { UpdateManyPostLikeArgs } from "./UpdateManyPostLikeArgs";
+export { UpdateOnePostLikeArgs } from "./UpdateOnePostLikeArgs";
+export { UpsertOnePostLikeArgs } from "./UpsertOnePostLikeArgs";

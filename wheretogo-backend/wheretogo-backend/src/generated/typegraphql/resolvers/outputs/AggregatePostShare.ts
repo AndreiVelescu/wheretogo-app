@@ -1,0 +1,39 @@
+import * as TypeGraphQL from "type-graphql";
+import * as GraphQLScalars from "graphql-scalars";
+import { Prisma } from "@prisma/client";
+import { DecimalJSScalar } from "../../scalars";
+import { PostShareAvgAggregate } from "../outputs/PostShareAvgAggregate";
+import { PostShareCountAggregate } from "../outputs/PostShareCountAggregate";
+import { PostShareMaxAggregate } from "../outputs/PostShareMaxAggregate";
+import { PostShareMinAggregate } from "../outputs/PostShareMinAggregate";
+import { PostShareSumAggregate } from "../outputs/PostShareSumAggregate";
+
+@TypeGraphQL.ObjectType("AggregatePostShare", {
+  simpleResolvers: true
+})
+export class AggregatePostShare {
+  @TypeGraphQL.Field(_type => PostShareCountAggregate, {
+    nullable: true
+  })
+  _count!: PostShareCountAggregate | null;
+
+  @TypeGraphQL.Field(_type => PostShareAvgAggregate, {
+    nullable: true
+  })
+  _avg!: PostShareAvgAggregate | null;
+
+  @TypeGraphQL.Field(_type => PostShareSumAggregate, {
+    nullable: true
+  })
+  _sum!: PostShareSumAggregate | null;
+
+  @TypeGraphQL.Field(_type => PostShareMinAggregate, {
+    nullable: true
+  })
+  _min!: PostShareMinAggregate | null;
+
+  @TypeGraphQL.Field(_type => PostShareMaxAggregate, {
+    nullable: true
+  })
+  _max!: PostShareMaxAggregate | null;
+}

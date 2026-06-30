@@ -1,0 +1,15 @@
+export { AggregatePostShareArgs } from "./AggregatePostShareArgs";
+export { CreateManyAndReturnPostShareArgs } from "./CreateManyAndReturnPostShareArgs";
+export { CreateManyPostShareArgs } from "./CreateManyPostShareArgs";
+export { CreateOnePostShareArgs } from "./CreateOnePostShareArgs";
+export { DeleteManyPostShareArgs } from "./DeleteManyPostShareArgs";
+export { DeleteOnePostShareArgs } from "./DeleteOnePostShareArgs";
+export { FindFirstPostShareArgs } from "./FindFirstPostShareArgs";
+export { FindFirstPostShareOrThrowArgs } from "./FindFirstPostShareOrThrowArgs";
+export { FindManyPostShareArgs } from "./FindManyPostShareArgs";
+export { FindUniquePostShareArgs } from "./FindUniquePostShareArgs";
+export { FindUniquePostShareOrThrowArgs } from "./FindUniquePostShareOrThrowArgs";
+export { GroupByPostShareArgs } from "./GroupByPostShareArgs";
+export { UpdateManyPostShareArgs } from "./UpdateManyPostShareArgs";
+export { UpdateOnePostShareArgs } from "./UpdateOnePostShareArgs";
+export { UpsertOnePostShareArgs } from "./UpsertOnePostShareArgs";

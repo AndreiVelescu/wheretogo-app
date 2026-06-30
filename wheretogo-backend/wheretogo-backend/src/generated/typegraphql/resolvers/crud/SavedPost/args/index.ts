@@ -1,0 +1,15 @@
+export { AggregateSavedPostArgs } from "./AggregateSavedPostArgs";
+export { CreateManyAndReturnSavedPostArgs } from "./CreateManyAndReturnSavedPostArgs";
+export { CreateManySavedPostArgs } from "./CreateManySavedPostArgs";
+export { CreateOneSavedPostArgs } from "./CreateOneSavedPostArgs";
+export { DeleteManySavedPostArgs } from "./DeleteManySavedPostArgs";
+export { DeleteOneSavedPostArgs } from "./DeleteOneSavedPostArgs";
+export { FindFirstSavedPostArgs } from "./FindFirstSavedPostArgs";
+export { FindFirstSavedPostOrThrowArgs } from "./FindFirstSavedPostOrThrowArgs";
+export { FindManySavedPostArgs } from "./FindManySavedPostArgs";
+export { FindUniqueSavedPostArgs } from "./FindUniqueSavedPostArgs";
+export { FindUniqueSavedPostOrThrowArgs } from "./FindUniqueSavedPostOrThrowArgs";
+export { GroupBySavedPostArgs } from "./GroupBySavedPostArgs";
+export { UpdateManySavedPostArgs } from "./UpdateManySavedPostArgs";
+export { UpdateOneSavedPostArgs } from "./UpdateOneSavedPostArgs";
+export { UpsertOneSavedPostArgs } from "./UpsertOneSavedPostArgs";

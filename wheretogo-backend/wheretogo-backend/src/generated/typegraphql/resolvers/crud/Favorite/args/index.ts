@@ -1,0 +1,15 @@
+export { AggregateFavoriteArgs } from "./AggregateFavoriteArgs";
+export { CreateManyAndReturnFavoriteArgs } from "./CreateManyAndReturnFavoriteArgs";
+export { CreateManyFavoriteArgs } from "./CreateManyFavoriteArgs";
+export { CreateOneFavoriteArgs } from "./CreateOneFavoriteArgs";
+export { DeleteManyFavoriteArgs } from "./DeleteManyFavoriteArgs";
+export { DeleteOneFavoriteArgs } from "./DeleteOneFavoriteArgs";
+export { FindFirstFavoriteArgs } from "./FindFirstFavoriteArgs";
+export { FindFirstFavoriteOrThrowArgs } from "./FindFirstFavoriteOrThrowArgs";
+export { FindManyFavoriteArgs } from "./FindManyFavoriteArgs";
+export { FindUniqueFavoriteArgs } from "./FindUniqueFavoriteArgs";
+export { FindUniqueFavoriteOrThrowArgs } from "./FindUniqueFavoriteOrThrowArgs";
+export { GroupByFavoriteArgs } from "./GroupByFavoriteArgs";
+export { UpdateManyFavoriteArgs } from "./UpdateManyFavoriteArgs";
+export { UpdateOneFavoriteArgs } from "./UpdateOneFavoriteArgs";
+export { UpsertOneFavoriteArgs } from "./UpsertOneFavoriteArgs";

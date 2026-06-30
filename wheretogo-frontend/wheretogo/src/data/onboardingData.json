@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Life is short and the <highlight>world is wide</highlight>",
+    "description": "At Friends tours and travel, we customize reliable and trustworthy educational tours to destinations all over the world.",
+    "buttonText": "Get Started"
+  },
+  {
+    "id": 2,
+    "title": "It's a big world out there go <highlight>explore</highlight>",
+    "description": "To get the best of your adventure you just need to leave and go where you like. We are waiting for you.",
+    "buttonText": "Next"
+  },
+  {
+    "id": 3,
+    "title": "People don't take trips, trips take <highlight>people</highlight>",
+    "description": "Ready to discover your next adventure? Join us and make unforgettable memories around the world.",
+    "buttonText": "Start Journey"
+  }
+]

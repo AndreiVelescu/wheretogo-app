@@ -1,0 +1,50 @@
+# ---- Dependencies ----
+node_modules/
+**/node_modules/
+
+# ---- Environment / secrets (safety net; nested .gitignore also cover these) ----
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# ---- Build / output ----
+dist/
+build/
+**/dist/
+**/build/
+coverage/
+**/coverage/
+*.tsbuildinfo
+
+# ---- Expo / React Native ----
+.expo/
+**/.expo/
+**/web-build/
+**/ios/Pods/
+**/ios/build/
+**/android/build/
+**/android/.gradle/
+**/android/app/build/
+
+# ---- Logs ----
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# ---- OS / editor ----
+.DS_Store
+**/.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# ---- Thesis / private docs (keep out of the public repo) ----
+*.docx
+teza.md
+thesis_*.md
+prezentare_*.md

@@ -1,0 +1,15 @@
+export { AggregateCommentLikeArgs } from "./AggregateCommentLikeArgs";
+export { CreateManyAndReturnCommentLikeArgs } from "./CreateManyAndReturnCommentLikeArgs";
+export { CreateManyCommentLikeArgs } from "./CreateManyCommentLikeArgs";
+export { CreateOneCommentLikeArgs } from "./CreateOneCommentLikeArgs";
+export { DeleteManyCommentLikeArgs } from "./DeleteManyCommentLikeArgs";
+export { DeleteOneCommentLikeArgs } from "./DeleteOneCommentLikeArgs";
+export { FindFirstCommentLikeArgs } from "./FindFirstCommentLikeArgs";
+export { FindFirstCommentLikeOrThrowArgs } from "./FindFirstCommentLikeOrThrowArgs";
+export { FindManyCommentLikeArgs } from "./FindManyCommentLikeArgs";
+export { FindUniqueCommentLikeArgs } from "./FindUniqueCommentLikeArgs";
+export { FindUniqueCommentLikeOrThrowArgs } from "./FindUniqueCommentLikeOrThrowArgs";
+export { GroupByCommentLikeArgs } from "./GroupByCommentLikeArgs";
+export { UpdateManyCommentLikeArgs } from "./UpdateManyCommentLikeArgs";
+export { UpdateOneCommentLikeArgs } from "./UpdateOneCommentLikeArgs";
+export { UpsertOneCommentLikeArgs } from "./UpsertOneCommentLikeArgs";

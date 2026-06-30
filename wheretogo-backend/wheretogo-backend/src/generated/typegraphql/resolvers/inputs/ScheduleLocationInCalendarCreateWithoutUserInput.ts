@@ -1,0 +1,23 @@
+import * as TypeGraphQL from "type-graphql";
+import * as GraphQLScalars from "graphql-scalars";
+import { Prisma } from "@prisma/client";
+import { DecimalJSScalar } from "../../scalars";
+import { LocationCreateNestedOneWithoutScheduleLocationInCalendarsInput } from "../inputs/LocationCreateNestedOneWithoutScheduleLocationInCalendarsInput";
+
+@TypeGraphQL.InputType("ScheduleLocationInCalendarCreateWithoutUserInput", {})
+export class ScheduleLocationInCalendarCreateWithoutUserInput {
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: false
+  })
+  scheduledDate!: Date;
+
+  @TypeGraphQL.Field(_type => Date, {
+    nullable: true
+  })
+  createdAt?: Date | undefined;
+
+  @TypeGraphQL.Field(_type => LocationCreateNestedOneWithoutScheduleLocationInCalendarsInput, {
+    nullable: false
+  })
+  location!: LocationCreateNestedOneWithoutScheduleLocationInCalendarsInput;
+}

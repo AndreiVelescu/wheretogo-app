@@ -1,0 +1,1 @@
+export { PostCollectionPostsArgs } from "./PostCollectionPostsArgs";

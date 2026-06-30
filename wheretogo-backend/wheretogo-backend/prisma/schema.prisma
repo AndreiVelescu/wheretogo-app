@@ -1,0 +1,744 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator typegraphql {
+  provider = "typegraphql-prisma"
+  output   = "../src/generated/typegraphql"
+  emitTranspiledCode = false
+  contextPrismaKey = "prisma"
+  simpleResolvers = true
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  name          String
+  nickname      String?   @unique
+  email         String    @unique
+  password      String?
+  role          UserRole  @default(USER)
+  provider      String    @default("local")
+  avatar        String?
+  bio           String?   // Bio for social profile
+  
+  // Existing relations
+  favorites     Favorite[]
+  reviews       Review[]
+  bookings      Booking[]
+  followers     Follower[] @relation("UserFollowers")
+  following     Follower[] @relation("UserFollowing")
+  notifications Notification[]
+  deviceTokens  DeviceToken[]
+  tripsOwned    Trip[]
+  tripsShared   TripCollaborator[]
+  chatMessages  ChatMessage[]
+  chatParticipants ChatParticipant[]
+  messageReads  ChatMessageRead[]
+  refreshTokens RefreshToken[]
+  scheduleLocationInCalendars ScheduleLocationInCalendar[]
+  
+  // Social posts relations
+  posts         Post[]
+  postLikes     PostLike[]
+  postComments  PostComment[]
+  commentLikes  CommentLike[]
+  savedPosts    SavedPost[]
+  collections   PostCollection[]
+  postShares    PostShare[]
+  postReports   PostReport[]
+  uploadSessions UploadSession[]
+  
+  createdAt     DateTime  @default(now())
+}
+
+model RefreshToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  
+  @@index([userId])
+  @@index([token])
+}
+
+
+
+model Location {
+  id               Int      @id @default(autoincrement())
+  placeId          String?  @unique
+  name             String
+  description      String?
+  type             String
+  types            String[] @default([])  // Full Google Places types array
+  priceRange       String?
+  vibes            String[]
+  address          String?
+  lat              Float?
+  lng              Float?
+  rating           Float?
+  userRatingsTotal Int?
+  website          String?
+  phone            String?
+  googleUrl        String?
+  
+
+  openHours        String?  
+  
+  photos           String[] @default([])
+  
+  
+  menuPdf          String?  
+
+  popularityScore  Int?     // 0–100
+  estimatedCost    Float?   // cost mediu per vizită
+  
+  googleImported   Boolean  @default(false)
+
+  reviews       Review[]
+  events        Event[]
+  bookings      Booking[]
+  favorites     Favorite[]
+  notifications Notification[]
+  tripStops     TripStop[]
+  createdAt     DateTime  @default(now())
+  
+  @@unique([name, address], name: "name_address_unique")
+  scheduleLocationInCalendars ScheduleLocationInCalendar[]
+  posts Post[]
+}
+
+model Trip {
+  id            Int       @id @default(autoincrement())
+  owner         User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId       Int
+  title         String
+  description   String?
+  status        TripStatus @default(DRAFT)
+  startDate     DateTime
+  endDate       DateTime
+  city          String?
+  country       String?
+  isPublic      Boolean   @default(false)
+  totalBudget   Float?
+  currency      String?   @default("MDL")
+  days          TripDay[]
+  collaborators TripCollaborator[]
+  notifications Notification[]
+  chatRoom      ChatRoom?
+  posts         Post[]    // Posts about this trip
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([ownerId])
+}
+
+model TripDay {
+  id        Int       @id @default(autoincrement())
+  trip      Trip      @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  tripId    Int
+  date      DateTime
+  dayNumber Int
+  notes     String?
+  stops     TripStop[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@unique([tripId, dayNumber])
+  @@index([tripId])
+}
+
+model TripStop {
+  id            Int        @id @default(autoincrement())
+  tripDay       TripDay    @relation(fields: [tripDayId], references: [id], onDelete: Cascade)
+  tripDayId     Int
+  location      Location?  @relation(fields: [locationId], references: [id])
+  locationId    Int?
+  customName    String?
+  address       String?
+  lat           Float?
+  lng           Float?
+  order         Int
+  arrivalTime   String?
+  departureTime String?
+  transportMode TransportMode?
+  notes         String?
+  estimatedCost Float?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  @@unique([tripDayId, order])
+  @@index([tripDayId])
+  @@index([locationId])
+}
+
+model TripCollaborator {
+  id        Int   @id @default(autoincrement())
+  trip      Trip  @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  tripId    Int
+  user      User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  role      TripCollaboratorRole @default(VIEWER)
+  createdAt DateTime @default(now())
+
+  @@unique([tripId, userId])
+  @@index([userId])
+}
+
+
+model Review {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  location   Location @relation(fields: [locationId], references: [id])
+  locationId Int
+  rating     Int
+  comment    String
+  likes      Int      @default(0)
+  createdAt  DateTime @default(now())
+}
+
+model Event {
+  id            Int      @id @default(autoincrement())
+  location      Location @relation(fields: [locationId], references: [id])
+  locationId    Int
+  name          String
+  description   String
+  date          DateTime
+  notify        Boolean  @default(false)
+  notifications Notification[]
+  createdAt     DateTime @default(now())
+}
+
+model Booking {
+  id           Int      @id @default(autoincrement())
+  user         User     @relation(fields: [userId], references: [id])
+  userId       Int
+  location     Location @relation(fields: [locationId], references: [id])
+  locationId   Int
+  date         DateTime
+  time         String
+  persons      Int
+  status       BookingStatus @default(PENDING)
+  affiliateUrl String?
+  createdAt    DateTime  @default(now())
+}
+
+model Favorite {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  location   Location @relation(fields: [locationId], references: [id])
+  locationId Int
+  createdAt  DateTime @default(now())
+}
+
+model Follower {
+  id         Int   @id @default(autoincrement())
+  user       User  @relation("UserFollowers", fields: [userId], references: [id])
+  userId     Int
+  follower   User  @relation("UserFollowing", fields: [followerId], references: [id])
+  followerId Int
+  createdAt  DateTime @default(now())
+}
+
+model Notification {
+  id         Int              @id @default(autoincrement())
+  user       User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     Int
+  type       NotificationType
+  title      String
+  body       String
+  data       Json?            // { tripId: 123, screen: 'TripDetail' }
+  isRead     Boolean          @default(false)
+  
+  // Optional relations
+  location   Location?        @relation(fields: [locationId], references: [id])
+  locationId Int?
+  event      Event?           @relation(fields: [eventId], references: [id])
+  eventId    Int?
+  trip       Trip?            @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  tripId     Int?
+  
+  createdAt  DateTime         @default(now())
+  
+  @@index([userId])
+  @@index([userId, isRead])
+}
+
+model DeviceToken {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     Int
+  token      String   @unique
+  platform   Platform
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  @@index([userId])
+}
+
+model ScheduleLocationInCalendar {
+  id            Int      @id @default(autoincrement())
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        Int
+  location      Location @relation(fields: [locationId], references: [id])
+  locationId    Int
+  scheduledDate DateTime
+  createdAt     DateTime @default(now())
+}
+model ChatRoom {
+  id             Int       @id @default(autoincrement())
+  type           ChatRoomType
+  name           String?
+  tripId         Int?      @unique
+  trip           Trip?     @relation(fields: [tripId], references: [id], onDelete: Cascade)
+  
+  messages       ChatMessage[]
+  participants   ChatParticipant[]
+  
+  lastMessageAt  DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  
+  @@index([type])
+  @@index([tripId])
+}
+
+model ChatMessage {
+  id         Int         @id @default(autoincrement())
+  content    String
+  type       MessageType @default(TEXT)
+  
+  senderId   Int
+  sender     User        @relation(fields: [senderId], references: [id], onDelete: Cascade)
+  
+  roomId     Int
+  room       ChatRoom    @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  
+  // Reply functionality
+  replyToId  Int?
+  replyTo    ChatMessage? @relation("MessageReplies", fields: [replyToId], references: [id], onDelete: SetNull)
+  replies    ChatMessage[] @relation("MessageReplies")
+  
+  readBy     ChatMessageRead[]
+  
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  editedAt   DateTime?   // Track when message was last edited
+  deletedAt  DateTime?
+  
+  @@index([roomId])
+  @@index([senderId])
+  @@index([roomId, createdAt])
+  @@index([replyToId])
+}
+
+model ChatParticipant {
+  id         Int       @id @default(autoincrement())
+  userId     Int
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  roomId     Int
+  room       ChatRoom  @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  
+  lastReadAt DateTime?
+  joinedAt   DateTime  @default(now())
+  leftAt     DateTime?
+  
+  isAdmin    Boolean   @default(false)
+  canWrite   Boolean   @default(true)
+  
+  @@unique([userId, roomId])
+  @@index([roomId])
+}
+
+model ChatMessageRead {
+  id        Int         @id @default(autoincrement())
+  userId    Int
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  messageId Int
+  message   ChatMessage @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  
+  readAt    DateTime    @default(now())
+  
+  @@unique([userId, messageId])
+  @@index([messageId])
+}
+
+enum ChatRoomType {
+  TRIP
+  DIRECT
+  GROUP
+}
+
+enum MessageType {
+  TEXT
+  IMAGE
+  LOCATION
+  FILE
+  SYSTEM
+}
+
+enum PostType {
+  EXPERIENCE
+  TIP
+  TRIP 
+}
+
+enum PostVisibility {
+  PUBLIC
+  FRIENDS
+  PRIVATE
+}
+
+model Post {
+  id          Int      @id @default(autoincrement())
+  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId    Int
+
+  type        PostType
+  title       String?
+  description String?
+  tags        String[] @default([])
+  
+  // Counters (denormalized for performance)
+  likesCount    Int      @default(0)
+  commentsCount Int      @default(0)
+  savedCount    Int      @default(0)
+  sharesCount   Int      @default(0)
+  viewsCount    Int      @default(0)
+  
+  visibility  PostVisibility @default(PUBLIC)
+
+  // Relations
+  location    Location? @relation(fields: [locationId], references: [id])
+  locationId  Int?
+  
+  trip        Trip?     @relation(fields: [tripId], references: [id])
+  tripId      Int?
+  
+  // Media, interactions, and engagement
+  media       PostMedia[]
+  likes       PostLike[]
+  comments    PostComment[]
+  saves       SavedPost[]
+  shares      PostShare[]
+  reports     PostReport[]
+  collections PostCollectionItem[]
+  metrics     PostMetrics?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  publishedAt DateTime?
+  
+  @@index([authorId])
+  @@index([type])
+  @@index([locationId])
+  @@index([tripId])
+  @@index([createdAt])
+  @@index([visibility, publishedAt])
+}
+
+// Multiple images/videos per post
+model PostMedia {
+  id        Int       @id @default(autoincrement())
+  post      Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    Int
+  type      MediaType
+  url       String
+  thumbnail String?
+  order     Int       @default(0)
+  width     Int?
+  height    Int?
+  duration  Int?      // For videos (seconds)
+  createdAt DateTime  @default(now())
+  
+  @@index([postId])
+}
+
+// Track who liked what
+model PostLike {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    Int
+  createdAt DateTime @default(now())
+  
+  @@unique([userId, postId])
+  @@index([postId])
+  @@index([userId])
+}
+
+model PostCollection {
+  id          Int      @id @default(autoincrement())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      Int
+  name        String
+  description String?
+  isPublic    Boolean  @default(false)
+  coverImage  String?
+  
+  posts       PostCollectionItem[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@index([userId])
+}
+
+// Junction table for many-to-many Post <-> Collection
+model PostCollectionItem {
+  id           Int            @id @default(autoincrement())
+  collection   PostCollection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  collectionId Int
+  post         Post           @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId       Int
+  order        Int            @default(0)
+  note         String?        // Optional note for this post in collection
+  addedAt      DateTime       @default(now())
+  
+  @@unique([collectionId, postId])
+  @@index([collectionId])
+  @@index([postId])
+}
+
+model PostComment {
+  id        Int      @id @default(autoincrement())
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    Int
+
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  Int
+
+  content   String
+  
+  // Reply functionality (simple tree structure)
+  parentId  Int?
+  parent    PostComment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies   PostComment[] @relation("CommentReplies")
+  
+  likesCount Int      @default(0)
+  likes      CommentLike[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  editedAt  DateTime?
+  
+  @@index([postId])
+  @@index([authorId])
+  @@index([parentId])
+  @@index([postId, createdAt])
+}
+
+// Track who liked comments
+model CommentLike {
+  id        Int         @id @default(autoincrement())
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  comment   PostComment @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  commentId Int
+  createdAt DateTime    @default(now())
+  
+  @@unique([userId, commentId])
+  @@index([commentId])
+}
+
+model SavedPost {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    Int
+  note      String?  // Optional personal note
+  createdAt DateTime @default(now())
+  
+  @@unique([userId, postId])
+  @@index([userId])
+  @@index([postId])
+}
+
+// Track shares for viral content discovery
+model PostShare {
+  id        Int       @id @default(autoincrement())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  post      Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    Int
+  platform  SharePlatform?
+  createdAt DateTime  @default(now())
+  
+  @@index([postId])
+  @@index([userId])
+}
+
+// Content moderation
+model PostReport {
+  id        Int        @id @default(autoincrement())
+  reporter  User       @relation(fields: [reporterId], references: [id], onDelete: Cascade)
+  reporterId Int
+  post      Post       @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    Int
+  reason    ReportReason
+  details   String?
+  status    ReportStatus @default(PENDING)
+  reviewedAt DateTime?
+  createdAt DateTime   @default(now())
+  
+  @@index([postId])
+  @@index([status])
+}
+
+model PostMetrics {
+  post      Post  @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    Int   @id
+  views     Int   @default(0)
+  clicks    Int   @default(0)
+  impressions Int @default(0)
+  engagementRate Float @default(0) // (likes + comments + shares) / views
+  updatedAt DateTime @updatedAt
+}
+
+
+enum NotificationType {
+  // Trip related
+  TRIP_COLLABORATOR_ADDED
+  TRIP_COLLABORATOR_REMOVED
+  TRIP_UPDATED
+  TRIP_REMINDER
+  TRIP_STARTED
+  
+  // Social
+  NEW_FOLLOWER
+  NEW_REVIEW
+  REVIEW_LIKED
+  
+  // Location
+  NEW_LOCATION_NEARBY
+  LOCATION_UPDATE
+  
+  // Booking
+  BOOKING_CONFIRMED
+  BOOKING_CANCELLED
+  BOOKING_REMINDER
+  
+  // System
+  ACCOUNT_VERIFIED
+  PROMO
+  SYSTEM
+}
+
+enum Platform {
+  IOS
+  ANDROID
+  WEB
+}
+
+
+
+enum UserRole {
+  USER
+  BUSINESS
+  ADMIN
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
+
+enum TripStatus {
+  DRAFT
+  PLANNED
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum TransportMode {
+  WALK
+  CAR
+  PUBLIC_TRANSPORT
+  BIKE
+  TAXI
+  OTHER
+}
+
+enum TripCollaboratorRole {
+  VIEWER
+  EDITOR
+  OWNER
+}
+
+
+
+
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  AUDIO
+}
+
+enum SharePlatform {
+  INTERNAL   // Shared within the app
+  FACEBOOK
+  INSTAGRAM
+  TWITTER
+  WHATSAPP
+  LINK       // Copied link
+}
+
+enum ReportReason {
+  SPAM
+  INAPPROPRIATE
+  HARASSMENT
+  MISLEADING
+  COPYRIGHT
+  OTHER
+}
+
+enum ReportStatus {
+  PENDING
+  REVIEWED
+  RESOLVED
+  DISMISSED
+}
+
+// Upload session tracking for direct MinIO uploads
+model UploadSession {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  fileKey     String   @unique  // MinIO file path
+  filename    String
+  contentType String
+  size        Int?
+  status      UploadStatus @default(PENDING)
+  confirmedAt DateTime?
+  expiresAt   DateTime
+  createdAt   DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([status])
+  @@index([expiresAt])
+}
+
+enum UploadStatus {
+  PENDING    // Presigned URL generated, waiting for upload
+  UPLOADED   // File uploaded to MinIO
+  CONFIRMED  // Confirmed and attached to resource
+  EXPIRED    // Session expired
+  FAILED     // Upload failed
+}

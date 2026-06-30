@@ -1,0 +1,15 @@
+export { AggregatePostCommentArgs } from "./AggregatePostCommentArgs";
+export { CreateManyAndReturnPostCommentArgs } from "./CreateManyAndReturnPostCommentArgs";
+export { CreateManyPostCommentArgs } from "./CreateManyPostCommentArgs";
+export { CreateOnePostCommentArgs } from "./CreateOnePostCommentArgs";
+export { DeleteManyPostCommentArgs } from "./DeleteManyPostCommentArgs";
+export { DeleteOnePostCommentArgs } from "./DeleteOnePostCommentArgs";
+export { FindFirstPostCommentArgs } from "./FindFirstPostCommentArgs";
+export { FindFirstPostCommentOrThrowArgs } from "./FindFirstPostCommentOrThrowArgs";
+export { FindManyPostCommentArgs } from "./FindManyPostCommentArgs";
+export { FindUniquePostCommentArgs } from "./FindUniquePostCommentArgs";
+export { FindUniquePostCommentOrThrowArgs } from "./FindUniquePostCommentOrThrowArgs";
+export { GroupByPostCommentArgs } from "./GroupByPostCommentArgs";
+export { UpdateManyPostCommentArgs } from "./UpdateManyPostCommentArgs";
+export { UpdateOnePostCommentArgs } from "./UpdateOnePostCommentArgs";
+export { UpsertOnePostCommentArgs } from "./UpsertOnePostCommentArgs";

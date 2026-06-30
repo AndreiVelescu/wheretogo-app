@@ -1,0 +1,15 @@
+export { AggregatePostReportArgs } from "./AggregatePostReportArgs";
+export { CreateManyAndReturnPostReportArgs } from "./CreateManyAndReturnPostReportArgs";
+export { CreateManyPostReportArgs } from "./CreateManyPostReportArgs";
+export { CreateOnePostReportArgs } from "./CreateOnePostReportArgs";
+export { DeleteManyPostReportArgs } from "./DeleteManyPostReportArgs";
+export { DeleteOnePostReportArgs } from "./DeleteOnePostReportArgs";
+export { FindFirstPostReportArgs } from "./FindFirstPostReportArgs";
+export { FindFirstPostReportOrThrowArgs } from "./FindFirstPostReportOrThrowArgs";
+export { FindManyPostReportArgs } from "./FindManyPostReportArgs";
+export { FindUniquePostReportArgs } from "./FindUniquePostReportArgs";
+export { FindUniquePostReportOrThrowArgs } from "./FindUniquePostReportOrThrowArgs";
+export { GroupByPostReportArgs } from "./GroupByPostReportArgs";
+export { UpdateManyPostReportArgs } from "./UpdateManyPostReportArgs";
+export { UpdateOnePostReportArgs } from "./UpdateOnePostReportArgs";
+export { UpsertOnePostReportArgs } from "./UpsertOnePostReportArgs";
